@@ -11,11 +11,9 @@ namespace Application.UseCases.Tasks
     public class DeleteTask : IUseCase<DeleteTaskRequest, ResponseDto>
     {
         private readonly ITaskReposistory _taskRepository;
-        private readonly IMapper _mapper;
         public DeleteTask(ITaskReposistory taskReposistory, IMapper mapper)
         {
             _taskRepository = taskReposistory;
-            _mapper = mapper;
         }
 
         public async Task<ResponseDto> Execute(DeleteTaskRequest request)

@@ -8,7 +8,7 @@ namespace Domain.Interfaces
     public interface ITaskReposistory
     {
         Task<IEnumerable<TaskItemEntity>> GetAllAsync();
-        Task<TaskItemEntity> GetByIdAsync(Guid id);
+        Task<TaskItemEntity> GetTaskByIdAsync(Guid id);
         Task<TaskItemEntity> AddAsync(TaskItemEntity task);
         Task<TaskItemEntity> UpdateAsync(TaskItemEntity task);
         Task<bool> DeleteAsync(Guid id);

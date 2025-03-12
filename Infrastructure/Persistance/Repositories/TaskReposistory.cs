@@ -40,7 +40,7 @@ namespace Infrastructure.Persistance.Repositories
             return await _context.Tasks.ToListAsync();
         }
 
-        public async Task<TaskItemEntity> GetByIdAsync(Guid id)
+        public async Task<TaskItemEntity> GetTaskByIdAsync(Guid id)
         {
             return await _context.Tasks.FindAsync(id);
         }
