@@ -5,12 +5,12 @@ using Domain.Entities;
 
 namespace Domain.Interfaces
 {
-    public interface ITaskManagementReposistory
+    public interface ITaskReposistory
     {
         Task<IEnumerable<TaskItemEntity>> GetAllAsync();
         Task<TaskItemEntity> GetByIdAsync(Guid id);
-        Task AddAsync(TaskItemEntity task);
-        Task UpdateAsync(TaskItemEntity task);
-        Task DeleteAsync(Guid id);
+        Task<TaskItemEntity> AddAsync(TaskItemEntity task);
+        Task<TaskItemEntity> UpdateAsync(TaskItemEntity task);
+        Task<bool> DeleteAsync(Guid id);
     }
 }
