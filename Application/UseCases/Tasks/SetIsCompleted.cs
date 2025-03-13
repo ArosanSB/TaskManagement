@@ -5,6 +5,7 @@ using Application.Guards;
 using Application.Interfaces;
 using AutoMapper;
 using Domain.Interfaces;
+using Serilog;
 
 namespace Application.UseCases.Tasks;
 
@@ -25,13 +26,18 @@ public class SetIsCompleted : IUseCase<SetIsCompletedRequest, ResponseDto>
         try
         {
             await _taskRepository.SetIsCompleted(request.id, request.isCompleted);
-            return new ResponseDto { IsSuccess = true, Message = "Task has been updated!" };
-        }
-        catch
-        {
-            //TODO log error + throw expection
-            return new ResponseDto { IsSuccess = false, Message = "Task has not been updated!" };
+            return new ResponseDto 
+            { 
+                IsSuccess = true, 
+                Message = $"Task: {request.id} has been updated isCompleted to {request.isCompleted}!"
 
+            };
+        }
+        catch (Exception ex)
+        {
+            Log.Error(ex, "Error updating isCompleted task: {TaskTitle}", request.id);
+
+            throw new Exception($"Failed to update isCompleted task: {request.id}", ex);
         }
     }
 }

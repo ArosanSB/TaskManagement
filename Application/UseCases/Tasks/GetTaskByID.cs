@@ -5,6 +5,7 @@ using Application.Interfaces;
 using AutoMapper;
 using Domain.Entities;
 using Domain.Interfaces;
+using Serilog;
 
 namespace Application.UseCases.Tasks;
 
@@ -27,10 +28,11 @@ public class GetTaskByID : IUseCase<GetTaskByIDRequest, TaskItemDto>
             TaskItemEntity taskItemEntity = await _taskRepository.GetTaskByIdAsync(request.TaskId);
             return _mapper.Map<TaskItemDto>(taskItemEntity);
         }
-        catch
+        catch (Exception ex)
         {
-            //TODO log error + throw expection
-            return null;
+            Log.Error(ex, "Error getting task by id task: {TaskTitle}", request.TaskId);
+
+            throw new Exception($"Failed to update task: {request.TaskId}", ex);
         }
     }
 }

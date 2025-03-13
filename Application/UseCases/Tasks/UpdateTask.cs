@@ -1,10 +1,12 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Application.Dto;
 using Application.Guards;
 using Application.Interfaces;
 using AutoMapper;
 using Domain.Entities;
 using Domain.Interfaces;
+using Serilog;
 
 namespace Application.UseCases.Tasks;
 
@@ -21,17 +23,22 @@ public class UpdateTask : IUseCase<UpdateTaskRequest, ResponseDto>
     public async Task<ResponseDto> Execute(UpdateTaskRequest request)
     {
         Guard.ThrowIfArgumentNull(request.TaskItem, nameof(request.TaskItem));
-
         try
         {
-            await _taskRepository.UpdateAsync(_mapper.Map<TaskItemEntity>(request.TaskItem));
-            return new ResponseDto { IsSuccess = true, Message = "Task: " + request.TaskItem.Title + " has been created!" };
-        }
-        catch
-        {
-            //TODO log error + throw expection
-            return new ResponseDto { IsSuccess = false, Message = "Task: " + request.TaskItem.Title + " has not been created!" };
+            var taskEntity = _mapper.Map<TaskItemEntity>(request.TaskItem);
+            await _taskRepository.UpdateAsync(taskEntity);
 
+            return new ResponseDto
+            {
+                IsSuccess = true,
+                Message = $"Task: {request.TaskItem.Title} has been updated!"
+            };
+        }
+        catch (Exception ex)
+        {
+            Log.Error(ex, "Error updating task: {TaskTitle}", request.TaskItem.Title);
+
+            throw new Exception($"Failed to update task: {request.TaskItem.Title}", ex);
         }
     }
 }

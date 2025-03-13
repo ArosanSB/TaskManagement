@@ -1,10 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Application.Interfaces;
 using AutoMapper;
 using Domain.Entities;
 using Domain.Interfaces;
+using Serilog;
 
 namespace Application.UseCases.Tasks;
 
@@ -19,7 +21,16 @@ public class GetAllTasks : IUseCase<IEnumerable<TaskItemDto>>
     }
     public async Task<IEnumerable<TaskItemDto>> Execute()
     {
-        IEnumerable<TaskItemEntity> taskItems = await _taskRepository.GetAllAsync();
-        return _mapper.Map<IEnumerable<TaskItemDto>>(taskItems).ToList();
+        try
+        {
+            IEnumerable<TaskItemEntity> taskItems = await _taskRepository.GetAllAsync();
+            return _mapper.Map<IEnumerable<TaskItemDto>>(taskItems).ToList();
+        }
+        catch (Exception ex)
+        {
+            Log.Error(ex, "Error getting all task task");
+
+            throw new Exception($"Failed to get all task", ex);
+        }
     }
 }
