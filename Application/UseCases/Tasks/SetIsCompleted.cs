@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Application.Dto;
+using Application.Guards;
 using Application.Interfaces;
 using AutoMapper;
 using Domain.Interfaces;
@@ -19,6 +20,8 @@ public class SetIsCompleted : IUseCase<SetIsCompletedRequest, ResponseDto>
     }
     public async Task<ResponseDto> Execute(SetIsCompletedRequest request)
     {
+        Guard.ThrowIfArgumentNull(request.id, nameof(request.id));
+        Guard.ThrowIfArgumentNull(request.isCompleted, nameof(request.isCompleted));
         try
         {
             await _taskRepository.SetIsCompleted(request.id, request.isCompleted);

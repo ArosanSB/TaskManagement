@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Application.Dto;
+using Application.Guards;
 using Application.Interfaces;
 using AutoMapper;
 using Domain.Entities;
@@ -19,6 +20,8 @@ public class UpdateTask : IUseCase<UpdateTaskRequest, ResponseDto>
     }
     public async Task<ResponseDto> Execute(UpdateTaskRequest request)
     {
+        Guard.ThrowIfArgumentNull(request.TaskItem, nameof(request.TaskItem));
+
         try
         {
             await _taskRepository.UpdateAsync(_mapper.Map<TaskItemEntity>(request.TaskItem));
