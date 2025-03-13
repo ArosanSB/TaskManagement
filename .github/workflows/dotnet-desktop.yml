@@ -45,6 +45,10 @@ jobs:
       - name: Build the application
         run: dotnet build --no-restore --configuration Release
 
+      - name: Debug - List Files
+        run: ls -R ${{ github.workspace }}
+
+
       - name: Run Migrations
         env:
           ConnectionStrings__DefaultConnection: "Host=localhost;Port=5432;Database=TaskDb;Username=postgres;Password=yourpassword"
