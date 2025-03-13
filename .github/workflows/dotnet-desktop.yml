@@ -14,7 +14,7 @@ jobs:
 
     services:
       postgres:
-        image: postgres:15
+        image: postgres:latest
         env:
           POSTGRES_DB: TaskDb
           POSTGRES_USER: postgres
@@ -36,6 +36,9 @@ jobs:
         with:
           dotnet-version: '8.0'
 
+      - name: Install dotnet-ef (Entity Framework CLI)
+        run: dotnet tool install --global dotnet-ef
+        
       - name: Restore dependencies
         run: dotnet restore
 
