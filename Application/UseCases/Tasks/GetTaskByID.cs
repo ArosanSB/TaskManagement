@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Application.Guards;
 using Application.Interfaces;
 using AutoMapper;
 using Domain.Entities;
@@ -20,6 +21,7 @@ public class GetTaskByID : IUseCase<GetTaskByIDRequest, TaskItemDto>
 
     public async Task<TaskItemDto> Execute(GetTaskByIDRequest request)
     {
+        Guard.ThrowIfArgumentNull(request.TaskId, nameof(request.TaskId));
         try
         {
             TaskItemEntity taskItemEntity = await _taskRepository.GetTaskByIdAsync(request.TaskId);

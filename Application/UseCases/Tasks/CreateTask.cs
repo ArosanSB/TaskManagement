@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Application.Dto;
+using Application.Guards;
 using Application.Interfaces;
 using AutoMapper;
 using Domain.Entities;
@@ -22,6 +23,11 @@ public class CreateTask : IUseCase<CreateTaskRequest, ResponseDto>
 
     public async Task<ResponseDto> Execute(CreateTaskRequest request)
     {
+        Guard.ThrowIfStringIsNullOrEmpty(request.title, nameof(request.title));
+        Guard.ThrowIfArgumentNull(request.dueDate, nameof(request.dueDate));
+        Guard.ThrowIfArgumentNull(request.isCompleted, nameof(request.isCompleted));
+        Guard.ThrowIfStringIsNullOrEmpty(request.description, nameof(request.description));
+
         TaskItemDto taskItem = new TaskItemDto
         {
             Id = Guid.NewGuid(),

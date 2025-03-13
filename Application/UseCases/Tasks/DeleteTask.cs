@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Application.Dto;
+using Application.Guards;
 using Application.Interfaces;
 using AutoMapper;
 using Domain.Interfaces;
@@ -18,6 +19,7 @@ public class DeleteTask : IUseCase<DeleteTaskRequest, ResponseDto>
 
     public async Task<ResponseDto> Execute(DeleteTaskRequest request)
     {
+        Guard.ThrowIfArgumentNull(request.TaskId, nameof(request.TaskId));
         try
         {
             await _taskRepository.DeleteAsync(request.TaskId);
