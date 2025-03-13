@@ -5,6 +5,7 @@ using Application.Guards;
 using Application.Interfaces;
 using AutoMapper;
 using Domain.Interfaces;
+using Serilog;
 
 namespace Application.UseCases.Tasks;
 
@@ -23,11 +24,17 @@ public class DeleteTask : IUseCase<DeleteTaskRequest, ResponseDto>
         try
         {
             await _taskRepository.DeleteAsync(request.TaskId);
-            return new ResponseDto { IsSuccess = true, Message = "Task has been deleted!" };
+            return new ResponseDto
+            {
+                IsSuccess = true,
+                Message = $"Task: {request.TaskId} has been deleted!"
+            };
         }
-        catch
+        catch (Exception ex)
         {
-            return new ResponseDto { IsSuccess = false, Message = "Task has not been deleted!" };
+            Log.Error(ex, $"Error delete task:", request.TaskId);
+
+            throw new Exception($"Failed to delete task: {request.TaskId}", ex);
         }
     }
 }

@@ -6,6 +6,7 @@ using Application.Interfaces;
 using AutoMapper;
 using Domain.Entities;
 using Domain.Interfaces;
+using Serilog;
 
 namespace Application.UseCases.Tasks;
 
@@ -39,11 +40,17 @@ public class CreateTask : IUseCase<CreateTaskRequest, ResponseDto>
         try
         {
             await _taskRepository.AddAsync(_mapper.Map<TaskItemEntity>(taskItem));
-            return new ResponseDto { IsSuccess = true, Message = "Task: " + taskItem.Title + " has been created!" };
+            return new ResponseDto
+            {
+                IsSuccess = true,
+                Message = $"Task: {request.title} has been created!"
+            };
         }
-        catch
+        catch (Exception ex)
         {
-            return new ResponseDto { IsSuccess = false, Message = "Task: " + taskItem.Title + " has not been created!" };
+            Log.Error(ex, "Error creating task: {TaskTitle}", request.title);
+
+            throw new Exception($"Failed to create task: {request.title}", ex);
         }
     }
 }

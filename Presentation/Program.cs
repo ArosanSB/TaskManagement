@@ -3,8 +3,17 @@ using Application;
 using Infrastructure.Persistance;
 using Infrastructure.Persistance.Repositories;
 using Microsoft.EntityFrameworkCore;
+using Serilog;
+using Presentation.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Configure Serilog
+Log.Logger = new LoggerConfiguration()
+    .WriteTo.Console()
+    .CreateLogger();
+
+builder.Host.UseSerilog();
 
 // Setting DB 
 builder.Services.AddDbContext<BusinessLogicDbContext>(options =>
@@ -24,6 +33,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+app.UseSerilogRequestLogging(); // Log all requests
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -31,6 +41,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseMiddleware<ExceptionMiddleware>();
 
 app.UseHttpsRedirection();
 
