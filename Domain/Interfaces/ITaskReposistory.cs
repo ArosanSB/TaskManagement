@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Domain.Entities;
 
-namespace Domain.Interfaces
+namespace Domain.Interfaces;
+
+public interface ITaskReposistory
 {
-    public interface ITaskReposistory
-    {
-        Task<IEnumerable<TaskItemEntity>> GetAllAsync();
-        Task<TaskItemEntity> GetTaskByIdAsync(Guid id);
-        Task<TaskItemEntity> AddAsync(TaskItemEntity task);
-        Task<TaskItemEntity> UpdateAsync(TaskItemEntity task);
-        Task<bool> DeleteAsync(Guid id);
-    }
+    Task<IEnumerable<TaskItemEntity>> GetAllAsync();
+    Task<TaskItemEntity> GetTaskByIdAsync(Guid id);
+    Task<TaskItemEntity> AddAsync(TaskItemEntity task);
+    Task<TaskItemEntity> UpdateAsync(TaskItemEntity task);
+    Task DeleteAsync(Guid id);
+    Task SetIsCompleted(Guid id, bool isCompleted);
 }

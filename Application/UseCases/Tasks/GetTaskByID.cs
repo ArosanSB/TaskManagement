@@ -1,37 +1,34 @@
-﻿using Application.Interfaces;
+﻿using System;
+using System.Threading.Tasks;
+using Application.Interfaces;
 using AutoMapper;
 using Domain.Entities;
 using Domain.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Application.UseCases.Tasks
+namespace Application.UseCases.Tasks;
+
+public record GetTaskByIDRequest(Guid TaskId);
+public class GetTaskByID : IUseCase<GetTaskByIDRequest, TaskItemDto>
 {
-    public record GetTaskByIDRequest(Guid TaskId);
-    public class GetTaskByID : IUseCase<GetTaskByIDRequest, TaskItemDto>
+    private readonly ITaskReposistory _taskRepository;
+    private readonly IMapper _mapper;
+    public GetTaskByID(ITaskReposistory taskReposistory, IMapper mapper)
     {
-        private readonly ITaskReposistory _taskRepository;
-        private readonly IMapper _mapper;
-        public GetTaskByID(ITaskReposistory taskReposistory, IMapper mapper)
-        {
-            _taskRepository = taskReposistory;
-            _mapper = mapper;
-        }
+        _taskRepository = taskReposistory;
+        _mapper = mapper;
+    }
 
-        public async Task<TaskItemDto> Execute(GetTaskByIDRequest request)
+    public async Task<TaskItemDto> Execute(GetTaskByIDRequest request)
+    {
+        try
         {
-            try
-            {
-                TaskItemEntity taskItemEntity = await _taskRepository.GetTaskByIdAsync(request.TaskId);
-                return _mapper.Map<TaskItemDto>(taskItemEntity);
-            } catch
-            {
-                //TODO log error + throw expection
-                return null;
-            }
+            TaskItemEntity taskItemEntity = await _taskRepository.GetTaskByIdAsync(request.TaskId);
+            return _mapper.Map<TaskItemDto>(taskItemEntity);
+        }
+        catch
+        {
+            //TODO log error + throw expection
+            return null;
         }
     }
 }

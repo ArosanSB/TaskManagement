@@ -1,9 +1,8 @@
 ﻿using AutoMapper;
 
-namespace Application.Mappers
+namespace Application.Mappers;
+
+public interface IMap<T>
 {
-    public interface IMap<T>
-    {
-        void MappingProfile(Profile profile) => profile.CreateMap(typeof(T), GetType());
-    }
+    void MappingProfile(Profile profile) => profile.CreateMap(typeof(T), GetType());
 }
