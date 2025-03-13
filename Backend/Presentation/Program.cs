@@ -19,10 +19,10 @@ builder.Host.UseSerilog();
 builder.Services.AddDbContext<BusinessLogicDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-// Interfaces
+// Added interfaces
 builder.Services.AddScoped<ITaskReposistory, TaskReposistory>();
 
-// Services
+// Adding services
 builder.Services.AddApplicationServices();
 
 // Add services to the container.
@@ -33,7 +33,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
-app.UseSerilogRequestLogging(); // Log all requests
+app.UseSerilogRequestLogging();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
