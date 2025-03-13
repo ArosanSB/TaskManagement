@@ -48,7 +48,7 @@ jobs:
       - name: Run Migrations
         env:
           ConnectionStrings__DefaultConnection: "Host=localhost;Port=5432;Database=TaskDb;Username=postgres;Password=yourpassword"
-        run: dotnet ef database update --project Infrastructure --startup-project Presentation
+        run: dotnet ef database update --project Backend\Infrastructure --startup-project Backend\Presentation
 
       #- name: Run Unit Tests
        # run: dotnet test --no-restore --verbosity normal
