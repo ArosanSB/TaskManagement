@@ -1,1 +1,71 @@
-<p>home works!</p>
+<div class="flex flex-col gap-6 max-w-4xl mx-auto mt-6">
+    <mat-card class="p-6 bg-gradient-to-r from-stone-300 to-stone-400 shadow-lg rounded-xl border border-gray-300 transition-transform transform hover:scale-105 hover:shadow-2xl">
+        <mat-card-title class="text-2xl font-bold text-gray-800">
+            Welcome to Task Management ✅
+        </mat-card-title>
+        <mat-card-content>
+            <p class="text-gray-700 text-lg">
+                This system helps you efficiently manage your tasks. You can:
+            </p>
+            <ul class="list-disc pl-5 text-gray-700 mt-3">
+                <li>Add new tasks with deadlines and priorities.</li>
+                <li>Edit or delete tasks as needed.</li>
+                <li>Track your progress easily with an intuitive UI.</li>
+            </ul>
+        </mat-card-content>
+    </mat-card>
+
+    <!-- Tasks, Create Task, and Repository -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Tasks Section -->
+        <mat-card class="p-6 bg-gradient-to-r from-stone-300 to-stone-400 shadow-lg rounded-xl border border-gray-300 transition-transform transform hover:scale-105 hover:shadow-2xl">
+            <mat-card-title class="text-2xl font-bold text-gray-800">
+                Tasks 📝
+            </mat-card-title>
+            <mat-card-content>
+                <p class="text-gray-700 text-lg">
+                    View and manage all your tasks in one place.
+                </p>
+            </mat-card-content>
+            <div class="mt-4">
+                <button mat-raised-button color="primary" routerLink="/tasks">
+                    View Tasks
+                </button>
+            </div>
+        </mat-card>
+
+        <!-- Create Task Section -->
+        <mat-card class="p-6 bg-gradient-to-r from-stone-300 to-stone-400 shadow-lg rounded-xl border border-gray-300 transition-transform transform hover:scale-105 hover:shadow-2xl">
+            <mat-card-title class="text-2xl font-bold text-gray-800">
+                Create a Task ✍️
+            </mat-card-title>
+            <mat-card-content>
+                <p class="text-gray-700 text-lg">
+                    Click below to create a new task.
+                </p>
+            </mat-card-content>
+            <div class="mt-4">
+                <button mat-raised-button color="accent" routerLink="/create-task">
+                    Create Task
+                </button>
+            </div>
+        </mat-card>
+
+        <!-- Repository Section -->
+        <mat-card class="p-6 bg-gradient-to-r from-stone-300 to-stone-400 shadow-lg rounded-xl border border-gray-300 transition-transform transform hover:scale-105 hover:shadow-2xl">
+            <mat-card-title class="text-2xl font-bold text-gray-800">
+                Repository 💻
+            </mat-card-title>
+            <mat-card-content>
+                <p class="text-gray-700 text-lg">
+                    View the source code on GitHub.
+                </p>
+            </mat-card-content>
+            <div class="mt-4">
+                <a mat-raised-button class="hover:text-orange-200" href="https://github.com/ArosanSB/TaskManagement" target="_blank">
+                    GitHub Repo
+                </a>
+            </div>
+        </mat-card>
+    </div>
+</div>
