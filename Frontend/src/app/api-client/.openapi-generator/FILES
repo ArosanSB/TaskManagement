@@ -1,0 +1,17 @@
+.gitignore
+README.md
+api.base.service.ts
+api.module.ts
+api/api.ts
+api/tasks.service.ts
+configuration.ts
+encoder.ts
+git_push.sh
+index.ts
+model/createTaskRequest.ts
+model/models.ts
+model/responseDto.ts
+model/setIsCompletedRequest.ts
+model/taskItemDto.ts
+param.ts
+variables.ts
