@@ -36,11 +36,26 @@ export class CreateTaskComponent {
     this.isCompleted = !this.isCompleted;
   }
 
+  checkIfFormValid(): boolean {
+    return this.taskTitle.length > 0 && 
+    this.taskTitle !== null && 
+    this.taskTitle !== undefined && 
+    this.taskDescription.length > 0 && 
+    this.taskDescription !== null &&
+     this.taskDescription !== undefined  &&
+      this.taskDueDate !== null &&
+      this.taskDueDate !== undefined &&
+       this.taskDueDate.length > 0 ? true : false;
+  }
+
   createTask(): void {
+    if (!this.checkIfFormValid()) {
+      alert('Please fill out all fields before submitting.');
+      return;}
     const newTask: CreateTaskRequest = {
       title: this.taskTitle,
       description: this.taskDescription,
-      dueDate: this.taskDueDate ? new Date(this.taskDueDate).toISOString() : '',
+      dueDate: this.taskDueDate ? new Date(this.taskDueDate!).toISOString() : '',
       isCompleted: this.isCompleted
     };
 
@@ -53,4 +68,6 @@ export class CreateTaskComponent {
       error: (error) => console.error('Error creating task:', error)
     });
   }
+
+ 
 }

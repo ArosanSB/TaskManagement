@@ -61,7 +61,23 @@ export class UpdateTaskComponent implements OnInit {
     this.isCompleted = !this.isCompleted;
   }
 
+  checkIfFormValid(): boolean {
+    return this.taskTitle !== null && 
+    this.taskTitle !== undefined && 
+    this.taskTitle.length > 0 && 
+    this.taskDescription !== null &&
+    this.taskDescription !== undefined &&
+    this.taskDescription.length > 0 && 
+    this.taskDueDate !== null &&
+    this.taskDueDate !== undefined &&
+    this.taskDueDate.length > 0 ? true : false;
+  }
+
   updateTask(): void {
+    if (!this.checkIfFormValid()) {
+      alert('Please fill out all fields before submitting.');
+      return;
+    }
     const updatedTask: TaskItemDto = {
       id: this.taskID,
       title: this.taskTitle,
