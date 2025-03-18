@@ -22,7 +22,7 @@ This project follows best practices and modern software architecture, including:
 - **JWT Authentication** - Secure authentication & authorization (Not added yet)
 - **Unit Testing with xUnit** - Testing API endpoints and business logic (Not added yet) 
 - **GitHub Actions (CI/CD)** - Automating builds, tests, and deployment 
-- **Angular** - Frontend application (work in progress) (Not added yet)
+- **Angular** - Frontend application (work in progress)
 
 ---
 
@@ -88,6 +88,7 @@ After running the Docker command, update your `appsettings.json` file with the f
 ✅ **Task Management API Endpoints**  
 ✅ **Guid-based IDs for Tasks**  
 ✅ **GitHub Actions for CI/CD**  
+✅ **Angular Frontend**  
 
 ---
 
@@ -104,7 +105,6 @@ After running the Docker command, update your `appsettings.json` file with the f
 ---
 
 ## **🚀 Features NOT Implemented (Yet)**
-🚧 **Angular Frontend (Work In Progress)**  
 🚧 **JWT Authentication (To Be Added)**  
 🚧 **Unit Tests (To Be Added)**  
 🚧 **Cloud Deployment (To Be Added)**  
