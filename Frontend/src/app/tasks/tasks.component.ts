@@ -12,6 +12,7 @@ import { RouterModule } from '@angular/router';
 import { MatButton } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCheckboxModule} from '@angular/material/checkbox';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tasks',
@@ -24,7 +25,7 @@ export class TasksComponent implements AfterViewInit {
   dataSource: MatTableDataSource<TaskItemDto> = new MatTableDataSource();
   private task: TasksService;
 
-  constructor(private tasksService: TasksService) {
+  constructor(private tasksService: TasksService, private router: Router) {
     this.task = tasksService;
     this.fetchTasks();
   }
@@ -69,6 +70,7 @@ export class TasksComponent implements AfterViewInit {
 
   RunEditTask(task: TaskItemDto) {
     console.log('Edit task: ', task);
+    this.router.navigate(['/update-task', task.id]);
   }
 
 }

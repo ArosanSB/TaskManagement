@@ -1,1 +1,56 @@
-<p>update-task works!</p>
+<div class="flex flex-col gap-6 max-w-4xl mx-auto mt-6">
+    <mat-card class="p-8 bg-gradient-to-br from-stone-300 to-stone-400 shadow-xl rounded-2xl border border-gray-300">
+        <mat-card-title class="text-3xl font-bold text-gray-900 mb-2">
+            ✏️ Update Task
+        </mat-card-title>
+        <mat-card-content>
+            <p class="text-gray-700 text-lg mb-4">
+                Update your task details below.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Task Title -->
+                <mat-form-field class="w-full">
+                    <mat-label>Title</mat-label>
+                    <input matInput [(ngModel)]="taskTitle" placeholder="Enter task title">
+                </mat-form-field>
+
+                <!-- Task Description -->
+                <mat-form-field class="w-full">
+                    <mat-label>Description</mat-label>
+                    <textarea matInput [(ngModel)]="taskDescription" placeholder="Describe the task"></textarea>
+                </mat-form-field>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+                <!-- Due Date -->
+                <mat-form-field class="w-full">
+                    <mat-label>Choose a Due Date</mat-label>
+                    <input matInput [(ngModel)]="taskDueDate" [matDatepicker]="picker">
+                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+
+                <!-- Completion Toggle -->
+                <div class="flex items-center space-x-3">
+                    <mat-slide-toggle [(ngModel)]="isCompleted" (change)="toggleCompletion()">
+                        {{ isCompleted ? '✅ Completed' : '❌ Not Completed' }}
+                    </mat-slide-toggle>
+                </div>
+            </div>
+
+            <div class="flex flex-row justify-end gap-4 mt-6">
+                <!-- Delete Button -->
+                <button (click)="deleteTask()" mat-raised-button color="warn" class="px-6 py-2 text-lg font-semibold">
+                    ❌ Delete Task
+                </button>
+                <!-- Update Button -->
+                <button (click)="updateTask()" mat-raised-button color="primary" class="px-6 py-2 text-lg font-semibold">
+                    ✅ Update Task
+                </button>
+            
+            </div>
+            
+        </mat-card-content>
+    </mat-card>
+</div>
