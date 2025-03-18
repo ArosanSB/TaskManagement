@@ -68,9 +68,9 @@ public class TasksController : ControllerBase
 
     [HttpGet("/getallTasks")]
     [ProducesResponseType(typeof(IEnumerable<TaskItemDto>), StatusCodes.Status200OK)]
-    [ProducesResponseType(typeof(ResponseDto), StatusCodes.Status400BadRequest)]
-    [ProducesResponseType(typeof(ResponseDto), StatusCodes.Status404NotFound)]
-    [ProducesResponseType(typeof(ResponseDto), StatusCodes.Status500InternalServerError)]
+    [ProducesResponseType(typeof(IEnumerable<TaskItemDto>), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(IEnumerable<TaskItemDto>), StatusCodes.Status404NotFound)]
+    [ProducesResponseType(typeof(IEnumerable<TaskItemDto>), StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> GetAllTasks()
     {
         IEnumerable<TaskItemDto> tasks = await _getAllTasks.Execute();
@@ -78,10 +78,10 @@ public class TasksController : ControllerBase
     }
 
     [HttpGet("/getTaskByID/{id}")]
-    [ProducesResponseType(typeof(ResponseDto), StatusCodes.Status200OK)]
-    [ProducesResponseType(typeof(ResponseDto), StatusCodes.Status400BadRequest)]
-    [ProducesResponseType(typeof(ResponseDto), StatusCodes.Status404NotFound)]
-    [ProducesResponseType(typeof(ResponseDto), StatusCodes.Status500InternalServerError)]
+    [ProducesResponseType(typeof(TaskItemDto), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(TaskItemDto), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(TaskItemDto), StatusCodes.Status404NotFound)]
+    [ProducesResponseType(typeof(TaskItemDto), StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> GetTaskByID(Guid id)
     {
         TaskItemDto task = await _getTaskByID.Execute(new GetTaskByIDRequest(id));

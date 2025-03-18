@@ -27,7 +27,7 @@ import { Router } from '@angular/router';
 export class CreateTaskComponent {
   taskTitle: string = '';
   taskDescription: string = '';
-  taskDueDate: string | null = null;
+  taskDueDate: string | null = new Date().toISOString();
   isCompleted: boolean = false;
 
   constructor(private tasksService: TasksService, private router: Router) {}
