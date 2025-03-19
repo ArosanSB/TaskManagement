@@ -23,6 +23,10 @@ public class UpdateTask : IUseCase<UpdateTaskRequest, ResponseDto>
     public async Task<ResponseDto> Execute(UpdateTaskRequest request)
     {
         Guard.ThrowIfArgumentNull(request.TaskItem, nameof(request.TaskItem));
+        Guard.ThrowIfArgumentNull(request.TaskItem.DueDate, nameof(request.TaskItem.DueDate));
+        Guard.ThrowIfArgumentNull(request.TaskItem.IsCompleted, nameof(request.TaskItem.IsCompleted));
+        Guard.ThrowIfStringIsNullOrEmpty(request.TaskItem.Description, nameof(request.TaskItem.Description));
+        Guard.ThrowIfStringIsNullOrEmpty(request.TaskItem.Title, nameof(request.TaskItem.Title));
         try
         {
             var taskEntity = _mapper.Map<TaskItemEntity>(request.TaskItem);
