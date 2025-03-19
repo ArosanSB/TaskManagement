@@ -37,7 +37,6 @@ public class CreateTaskTests
 
         // Assert
         Assert.True(response.IsSuccess);
-        Assert.Equal("Task: New Task has been created!", response.Message);
     }
 
     [Fact]

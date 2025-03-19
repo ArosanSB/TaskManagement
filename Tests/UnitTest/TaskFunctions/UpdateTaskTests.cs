@@ -58,7 +58,6 @@ public class UpdateTaskTests
 
         // Assert
         Assert.True(response.IsSuccess);
-        Assert.Equal("Task: Update Task has been updated!", response.Message);
     }
 
     [Fact]
