@@ -1,0 +1,60 @@
+﻿using Application.UseCases.Tasks;
+using AutoMapper;
+using Domain.Entities;
+using Domain.Interfaces;
+using Moq;
+using Tests;
+using Xunit;
+
+namespace Tests.Unit_Test.TaskFunctions;
+
+public class CreateTaskTests
+{
+    private readonly Mock<ITaskReposistory> _taskRepository;
+    private readonly Mock<IMapper> _mockMapper;
+    private readonly CreateTask _createTaskUseCase;
+
+    public CreateTaskTests()
+    {
+        _taskRepository = new Mock<ITaskReposistory>();
+        _mockMapper = new Mock<IMapper>();
+        _createTaskUseCase = new CreateTask(_taskRepository.Object, _mockMapper.Object);
+    }
+
+    [Fact]
+    [Trait(Traits.Category, Traits.UnitTest)]
+    public async Task CreateTest_Success()
+    {
+        // Arrange
+        var request = new CreateTaskRequest("New Task", "Description", DateTime.Now, false);
+        var taskEntity = new TaskItemEntity { Title = "New Task", Description = "Task Description" };
+
+        _mockMapper.Setup(m => m.Map<TaskItemEntity>(It.IsAny<TaskItemDto>())).Returns(taskEntity);
+        _taskRepository.Setup(repo => repo.AddAsync(It.IsAny<TaskItemEntity>())).Returns(Task.FromResult(taskEntity));
+
+        // Act
+        var response = await _createTaskUseCase.Execute(request);
+
+        // Assert
+        Assert.True(response.IsSuccess);
+        Assert.Equal("Task: New Task has been created!", response.Message);
+    }
+
+    [Fact]
+    [Trait(Traits.Category, Traits.UnitTest)]
+    public async Task CreateTest_Fail()
+    {
+        // Arrange
+        var request = new CreateTaskRequest("New Task", "Description", DateTime.Now, false);
+        var taskEntity = new TaskItemEntity { Title = "New Task", Description = "Task Description" };
+        
+        _mockMapper.Setup(m => m.Map<TaskItemEntity>(It.IsAny<TaskItemDto>())).Returns(taskEntity);
+        _taskRepository.Setup(repo => repo.AddAsync(It.IsAny<TaskItemEntity>())).Throws(new Exception("Failed to create task"));
+     
+        // Act
+        var ex = await Assert.ThrowsAsync<Exception>(() => _createTaskUseCase.Execute(request));
+        
+        // Assert
+        Assert.Equal("Failed to create task: New Task", ex.Message);
+    }
+}
