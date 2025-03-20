@@ -11,14 +11,14 @@ namespace Tests.UnitTest.TaskFunctions;
 public class CreateTaskTests
 {
     private readonly Mock<ITaskReposistory> _taskRepository;
-    private readonly Mock<IMapper> _mockMapper;
+    private readonly IMapper _mapper;
     private readonly CreateTask _taskUseCase;
 
     public CreateTaskTests()
     {
         _taskRepository = new Mock<ITaskReposistory>();
-        _mockMapper = new Mock<IMapper>();
-        _taskUseCase = new CreateTask(_taskRepository.Object, _mockMapper.Object);
+        _mapper = AutoMapperTestService.AddAutoMapperProfile();
+        _taskUseCase = new CreateTask(_taskRepository.Object, _mapper);
     }
 
     [Fact]

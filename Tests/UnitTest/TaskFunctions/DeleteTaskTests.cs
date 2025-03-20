@@ -10,14 +10,14 @@ namespace Tests.Unit_Test.TaskFunctions;
 public class DeleteTaskTests
 {
     private readonly Mock<ITaskReposistory> _taskRepository;
-    private readonly Mock<IMapper> _mockMapper;
+    private readonly IMapper _mapper;
     private readonly DeleteTask _taskUseCase;
 
     public DeleteTaskTests()
     {
         _taskRepository = new Mock<ITaskReposistory>();
-        _mockMapper = new Mock<IMapper>();
-        _taskUseCase = new DeleteTask(_taskRepository.Object, _mockMapper.Object);
+        _mapper = AutoMapperTestService.AddAutoMapperProfile();
+        _taskUseCase = new DeleteTask(_taskRepository.Object, _mapper);
     }
 
     [Fact]

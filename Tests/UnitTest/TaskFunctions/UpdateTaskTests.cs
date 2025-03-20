@@ -10,16 +10,16 @@ namespace Tests.UnitTest.TaskFunctions;
 public class UpdateTaskTests
 {
     private readonly Mock<ITaskReposistory> _taskRepository;
-    private readonly Mock<IMapper> _mockMapper;
+    private readonly IMapper _mapper;
     private readonly UpdateTask _taskUseCase;
     private readonly GetTaskByID _getTaskByIdUseCase;
 
     public UpdateTaskTests()
     {
         _taskRepository = new Mock<ITaskReposistory>();
-        _mockMapper = new Mock<IMapper>();
-        _taskUseCase = new UpdateTask(_taskRepository.Object, _mockMapper.Object);
-        _getTaskByIdUseCase = new GetTaskByID(_taskRepository.Object, _mockMapper.Object);
+        _mapper = AutoMapperTestService.AddAutoMapperProfile();
+        _taskUseCase = new UpdateTask(_taskRepository.Object, _mapper);
+        _getTaskByIdUseCase = new GetTaskByID(_taskRepository.Object, _mapper);
     }
 
     [Fact]
