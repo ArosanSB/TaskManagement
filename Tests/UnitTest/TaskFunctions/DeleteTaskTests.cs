@@ -1,10 +1,8 @@
-﻿using System;
-using Application.UseCases.Tasks;
+﻿using Application.UseCases.Tasks;
 using AutoMapper;
 using Domain.Entities;
 using Domain.Interfaces;
 using Moq;
-using Tests;
 using Xunit;
 
 namespace Tests.Unit_Test.TaskFunctions;
@@ -33,17 +31,20 @@ public class DeleteTaskTests
         DateTime dueDate = DateTime.Now;
         bool isCompleted = false;
 
-        TaskItemEntity task = new TaskItemEntity{
+        TaskItemEntity task = new TaskItemEntity
+        {
             Id = requestID,
             Title = title,
             Description = description,
             DueDate = dueDate,
             IsCompleted = isCompleted
         };
-            
+
         _taskRepository.Setup(x => x.DeleteAsync(requestID));
+
         // Act
         var result = await _taskUseCase.Execute(new DeleteTaskRequest(requestID));
+
         // Assert
         Assert.True(result.IsSuccess);
     }

@@ -6,7 +6,7 @@ using Moq;
 using Tests;
 using Xunit;
 
-namespace Tests.Unit_Test.TaskFunctions;
+namespace Tests.UnitTest.TaskFunctions;
 
 public class CreateTaskTests
 {

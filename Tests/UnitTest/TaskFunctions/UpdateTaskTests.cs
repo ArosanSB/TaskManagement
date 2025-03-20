@@ -1,5 +1,4 @@
 ﻿using Application.UseCases.Tasks;
-using AutoFixture;
 using AutoMapper;
 using Domain.Entities;
 using Domain.Interfaces;
@@ -70,7 +69,7 @@ public class UpdateTaskTests
         string description = "Task should be updated";
         DateTime dueDate = DateTime.Now;
         bool isCompleted = false;
-       
+
         TaskItemDto request = new TaskItemDto
         {
             Id = requestID,
