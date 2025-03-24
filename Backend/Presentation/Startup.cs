@@ -10,7 +10,7 @@ namespace Presentation;
 
 public class Startup
 {
-    public IConfiguration Configuration { get;  }
+    public IConfiguration Configuration { get; }
     public Startup(IConfiguration configuration)
     {
         Configuration = configuration;
@@ -50,7 +50,7 @@ public class Startup
             .WriteTo.Console()
             .CreateLogger();
         services.AddLogging(loggingBuilder => loggingBuilder.AddSerilog(dispose: true));
-        
+
         services.AddHttpContextAccessor();
 
     }

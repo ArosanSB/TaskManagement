@@ -35,7 +35,7 @@ public class CreateTaskTests : IClassFixture<TestEnvironmnet>
 
             // Act
             HttpResponseMessage response = await _testEnvironment.HttpClient.PostAsJsonAsync($"/tasks/createtask", newTask);
-            
+
             // Assert
             response.EnsureSuccessStatusCode();
             string content = await response.Content.ReadAsStringAsync();

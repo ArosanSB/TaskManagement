@@ -1,10 +1,12 @@
-﻿using Application.UseCases.Tasks;
+﻿using Application.Dto;
+using Application.UseCases.Tasks;
 using AutoFixture;
 using AutoMapper;
 using Domain.Entities;
 using Domain.Interfaces;
 using Moq;
 using Xunit;
+
 
 namespace Tests.UnitTest.TaskFunctions;
 
@@ -55,7 +57,7 @@ public class GetAllTasksTests
             .With(t => t.DueDate, dueDate)
             .With(t => t.IsCompleted, isCompleted)
             .Create();
-        
+
         IEnumerable<TaskItemEntity> taskEntities = new List<TaskItemEntity> { taskEntity1, taskEntity2, taskEntity3 };
         _taskRepository.Setup(repo => repo.GetAllAsync()).ReturnsAsync(taskEntities);
 

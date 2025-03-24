@@ -3,7 +3,6 @@ using AutoMapper;
 using Domain.Entities;
 using Domain.Interfaces;
 using Moq;
-using Tests;
 using Xunit;
 
 namespace Tests.UnitTest.TaskFunctions;
@@ -28,7 +27,7 @@ public class CreateTaskTests
         // Arrange
         Guid requestID = Guid.NewGuid();
         var request = new CreateTaskRequest("New Task", "Description", DateTime.Now, false);
-        var taskEntity = new TaskItemEntity { Id=requestID, Title = "New Task", Description = "Task Description", DueDate = DateTime.Now, IsCompleted = false };
+        var taskEntity = new TaskItemEntity { Id = requestID, Title = "New Task", Description = "Task Description", DueDate = DateTime.Now, IsCompleted = false };
 
         _taskRepository.Setup(repo => repo.AddAsync(It.IsAny<TaskItemEntity>()));
 

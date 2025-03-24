@@ -1,7 +1,5 @@
-﻿using System.Net.Http.Json;
-using System.Text.Json;
+﻿using System.Text.Json;
 using Application.Dto;
-using Application.UseCases.Tasks;
 using AutoFixture;
 using AutoMapper;
 using Domain.Entities;

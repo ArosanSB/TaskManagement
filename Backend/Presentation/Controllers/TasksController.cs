@@ -1,7 +1,6 @@
 ﻿using Application.Dto;
 using Application.Interfaces;
 using Application.UseCases.Tasks;
-using Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Presentation.Controllers;

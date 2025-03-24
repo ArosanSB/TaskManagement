@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Application;
+﻿using Application;
 using Domain.Interfaces;
 using Infrastructure.Persistance;
 using Infrastructure.Persistance.Repositories;
@@ -13,9 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using Presentation;
-using Presentation.Middleware;
 
 namespace Tests.IntegrationTest.Utility;
 
@@ -45,7 +38,7 @@ public class TestEnvironmentStartup
         services.AddControllers();
         services.AddRouting();
         services.AddSwaggerGen();
-        
+
         services.AddScoped<ITaskReposistory, TaskReposistory>();
         services.AddApplicationServices();
     }

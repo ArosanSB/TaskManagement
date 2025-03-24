@@ -1,8 +1,9 @@
 ﻿using System;
 using Application.Mappers;
 using AutoMapper;
+using Domain.Entities;
 
-namespace Domain.Entities;
+namespace Application.Dto;
 
 public class TaskItemDto : IMap<TaskItemEntity>
 {

@@ -51,7 +51,7 @@ export class TasksComponent implements AfterViewInit {
   }
 
   fetchTasks(): void {
-    this.tasksService.getallTasksGet().subscribe({
+    this.tasksService.tasksGetallTasksGet().subscribe({
       next: (response) => {
         console.log("Tasks Received:", response); // Debugging log
         this.tasks = response; // Assign API data to tasks array

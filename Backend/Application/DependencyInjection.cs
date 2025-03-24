@@ -3,7 +3,6 @@ using Application.Dto;
 using Application.Interfaces;
 using Application.Mappers;
 using Application.UseCases.Tasks;
-using Domain.Entities;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Application;

@@ -26,9 +26,9 @@ public class SetIsCompleted : IUseCase<SetIsCompletedRequest, ResponseDto>
         try
         {
             await _taskRepository.SetIsCompleted(request.id, request.isCompleted);
-            return new ResponseDto 
-            { 
-                IsSuccess = true, 
+            return new ResponseDto
+            {
+                IsSuccess = true,
                 Message = $"Task: {request.id} has been updated isCompleted to {request.isCompleted}!"
 
             };
