@@ -1,6 +1,7 @@
 ﻿using Application.UseCases.Tasks;
 using AutoMapper;
 using Domain.Entities;
+using Application.Dto;
 using Domain.Interfaces;
 using Moq;
 using Xunit;

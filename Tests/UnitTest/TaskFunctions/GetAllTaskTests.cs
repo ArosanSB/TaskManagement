@@ -1,10 +1,12 @@
-﻿using Application.UseCases.Tasks;
+﻿using Application.Dto;
+using Application.UseCases.Tasks;
 using AutoFixture;
 using AutoMapper;
 using Domain.Entities;
 using Domain.Interfaces;
 using Moq;
 using Xunit;
+
 
 namespace Tests.UnitTest.TaskFunctions;
 
