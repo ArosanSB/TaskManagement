@@ -18,10 +18,13 @@ public class TestEnvironmnet
 
     public TestEnvironmnet()
     {
+         string solutionDirectory = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName;
+         string presentationPath = Path.Combine(solutionDirectory, "Backend", "Presentation");
+
         string applicationPath = ".";
         _testServer = new TestServer(new WebHostBuilder()
             .UseEnvironment("Testing")
-            .UseContentRoot(applicationPath)
+            .UseContentRoot(presentationPath)
             .UseConfiguration(new ConfigurationBuilder()
                 .AddJsonFile("appsettings.json")
                 .Build())
