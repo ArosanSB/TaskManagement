@@ -42,7 +42,7 @@ export class UpdateTaskComponent implements OnInit {
   }
 
   fetchTask(id: string): void {
-    this.tasksService.getTaskByIDIdGet(id).subscribe({
+    this.tasksService.tasksGetTaskByIDIdGet(id).subscribe({
       next: (task) => {
         console.log("Fetched Task: ", task);
         this.taskID = task.id;
@@ -86,7 +86,7 @@ export class UpdateTaskComponent implements OnInit {
       isCompleted: this.isCompleted
     };
 
-    this.tasksService.updatetaskPut(updatedTask).subscribe({
+    this.tasksService.tasksUpdatetaskPut(updatedTask).subscribe({
       next: () => {
         console.log('Task Updated:', updatedTask);
         alert('Task successfully updated!');
@@ -97,7 +97,7 @@ export class UpdateTaskComponent implements OnInit {
   }
 
   deleteTask(): void {
-    this.tasksService.deletetaskIdDelete(this.taskID!).subscribe({
+    this.tasksService.tasksDeletetaskIdDelete(this.taskID!).subscribe({
       next: () => {
         console.log('Task Deleted:', this.taskID);
         alert('Task successfully deleted!');

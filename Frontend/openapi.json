@@ -5,7 +5,7 @@
     "version": "1.0"
   },
   "paths": {
-    "/createtask": {
+    "/Tasks/createtask": {
       "post": {
         "tags": [
           "Tasks"
@@ -73,7 +73,7 @@
         }
       }
     },
-    "/deletetask/{id}": {
+    "/Tasks/deletetask/{id}": {
       "delete": {
         "tags": [
           "Tasks"
@@ -133,7 +133,7 @@
         }
       }
     },
-    "/updatetask": {
+    "/Tasks/updatetask": {
       "put": {
         "tags": [
           "Tasks"
@@ -201,7 +201,7 @@
         }
       }
     },
-    "/getallTasks": {
+    "/Tasks/getallTasks": {
       "get": {
         "tags": [
           "Tasks"
@@ -225,7 +225,10 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ResponseDto"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TaskItemDto"
+                  }
                 }
               }
             }
@@ -235,7 +238,10 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ResponseDto"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TaskItemDto"
+                  }
                 }
               }
             }
@@ -245,7 +251,10 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ResponseDto"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TaskItemDto"
+                  }
                 }
               }
             }
@@ -253,7 +262,7 @@
         }
       }
     },
-    "/getTaskByID/{id}": {
+    "/Tasks/getTaskByID/{id}": {
       "get": {
         "tags": [
           "Tasks"
@@ -275,7 +284,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ResponseDto"
+                  "$ref": "#/components/schemas/TaskItemDto"
                 }
               }
             }
@@ -285,7 +294,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ResponseDto"
+                  "$ref": "#/components/schemas/TaskItemDto"
                 }
               }
             }
@@ -295,7 +304,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ResponseDto"
+                  "$ref": "#/components/schemas/TaskItemDto"
                 }
               }
             }
@@ -305,7 +314,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ResponseDto"
+                  "$ref": "#/components/schemas/TaskItemDto"
                 }
               }
             }
@@ -313,7 +322,7 @@
         }
       }
     },
-    "/setisCompleted": {
+    "/Tasks/setisCompleted": {
       "put": {
         "tags": [
           "Tasks"

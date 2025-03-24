@@ -59,7 +59,7 @@ export class CreateTaskComponent {
       isCompleted: this.isCompleted
     };
 
-    this.tasksService.createtaskPost(newTask).subscribe({
+    this.tasksService.tasksCreatetaskPost(newTask).subscribe({
       next: () => {
         console.log('Task Created:', newTask);
         alert('Task successfully created!');
