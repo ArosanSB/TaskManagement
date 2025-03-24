@@ -50,7 +50,7 @@ public class SetIsCompletedTests
         };
 
         // Act
-        _taskRepository.Setup(repo => repo.SetIsCompleted(It.IsAny<Guid>(),It.IsAny<bool>()));
+        _taskRepository.Setup(repo => repo.SetIsCompleted(It.IsAny<Guid>(), It.IsAny<bool>()));
         var response = await _taskUseCase.Execute(new SetIsCompletedRequest(requestID, true));
 
         // Assert

@@ -55,7 +55,7 @@ public class GetAllTasksTests
             .With(t => t.DueDate, dueDate)
             .With(t => t.IsCompleted, isCompleted)
             .Create();
-        
+
         IEnumerable<TaskItemEntity> taskEntities = new List<TaskItemEntity> { taskEntity1, taskEntity2, taskEntity3 };
         _taskRepository.Setup(repo => repo.GetAllAsync()).ReturnsAsync(taskEntities);
 

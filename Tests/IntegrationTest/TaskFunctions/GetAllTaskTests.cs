@@ -1,8 +1,5 @@
-﻿using System.Net.Http.Json;
-using System.Text.Json;
-using System.Threading.Tasks;
+﻿using System.Text.Json;
 using Application.Dto;
-using Application.UseCases.Tasks;
 using AutoFixture;
 using AutoMapper;
 using Domain.Entities;
@@ -60,7 +57,7 @@ public class GetAllTaskTests : IClassFixture<TestEnvironmnet>
 
     private static async Task<IEnumerable<TaskItemDto>> CreateTask(IMapper mapper, BusinessLogicDbContext context)
     {
-        List<TaskItemEntity> taskList = new();  
+        List<TaskItemEntity> taskList = new();
         TaskItemEntity newTask = new()
         {
             Id = Guid.NewGuid(),

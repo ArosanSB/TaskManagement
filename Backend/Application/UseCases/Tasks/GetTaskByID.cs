@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Application.Dto;
 using Application.Guards;
 using Application.Interfaces;
 using AutoMapper;
