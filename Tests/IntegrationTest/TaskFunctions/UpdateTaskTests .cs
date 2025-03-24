@@ -1,7 +1,6 @@
 ﻿using System.Net.Http.Json;
 using System.Text.Json;
 using Application.Dto;
-using Application.UseCases.Tasks;
 using AutoFixture;
 using AutoMapper;
 using Domain.Entities;
@@ -57,16 +56,16 @@ public class UpdateTaskTests : IClassFixture<TestEnvironmnet>
             HttpResponseMessage responseMessage = await _testEnvironment.HttpClient.GetAsync($"/tasks/getTaskByID/{requestID}");
             string content2 = await responseMessage.Content.ReadAsStringAsync();
             TaskItemDto? taskItemDto = JsonSerializer.Deserialize<TaskItemDto>(content2, _jsonSerializerOptions);
-            Assert.Equal(request.Title, taskItemDto.Title);
-            Assert.Equal(request.Description, taskItemDto.Description);
-            Assert.Equal(request.DueDate, taskItemDto.DueDate);
-            Assert.Equal(request.IsCompleted, taskItemDto.IsCompleted);
+            Assert.Equal(request.Title, taskItemDto?.Title);
+            Assert.Equal(request.Description, taskItemDto?.Description);
+            Assert.Equal(request.DueDate, taskItemDto?.DueDate);
+            Assert.Equal(request.IsCompleted, taskItemDto?.IsCompleted);
         }
     }
-    
+
     private static async Task<Guid> CreateTask(IMapper mapper, BusinessLogicDbContext context)
     {
-        TaskItemEntity newTask = new TaskItemEntity()
+        TaskItemEntity newTask = new()
         {
             Id = Guid.NewGuid(),
             Title = "Integration Test Task",
