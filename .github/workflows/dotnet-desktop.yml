@@ -54,9 +54,8 @@ jobs:
           ConnectionStrings__DefaultConnection: "Host=localhost;Port=5432;Database=TaskDb;Username=postgres;Password=yourpassword"
         run: dotnet ef database update --project Backend/Infrastructure/Infrastructure.csproj --startup-project Backend/Presentation/Presentation.csproj
         
-
-      #- name: Run Unit Tests
-       # run: dotnet test --no-restore --verbosity normal
+      - name: Run Unit Tests
+        run: dotnet tests --no-restore --verbosity normal
 
       - name: Publish Application
         run: dotnet publish -c Release -o publish
