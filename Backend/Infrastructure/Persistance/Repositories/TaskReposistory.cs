@@ -26,7 +26,8 @@ public class TaskReposistory : ITaskReposistory
 
     public async Task DeleteAsync(Guid id)
     {
-        await _context.Tasks.Where(x => x.Id.Equals(id)).ExecuteDeleteAsync();
+        TaskItemEntity taskItemEntity = await _context.Tasks.FindAsync(id);
+        _context.Tasks.Remove(taskItemEntity);
     }
 
     public async Task<IEnumerable<TaskItemEntity>> GetAllAsync()

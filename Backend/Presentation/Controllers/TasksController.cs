@@ -33,7 +33,7 @@ public class TasksController : ControllerBase
         _setIsCompleted = setIsCompleted;
     }
 
-    [HttpPost("/createtask")]
+    [HttpPost("createtask")]
     [ProducesResponseType(typeof(ResponseDto), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ResponseDto), StatusCodes.Status400BadRequest)]
     [ProducesResponseType(typeof(ResponseDto), StatusCodes.Status404NotFound)]
@@ -44,7 +44,7 @@ public class TasksController : ControllerBase
         return Ok(response);
     }
 
-    [HttpDelete("/deletetask/{id}")]
+    [HttpDelete("deletetask/{id}")]
     [ProducesResponseType(typeof(ResponseDto), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ResponseDto), StatusCodes.Status400BadRequest)]
     [ProducesResponseType(typeof(ResponseDto), StatusCodes.Status404NotFound)]
@@ -55,7 +55,7 @@ public class TasksController : ControllerBase
         return Ok(response);
     }
 
-    [HttpPut("/updatetask")]
+    [HttpPut("updatetask")]
     [ProducesResponseType(typeof(ResponseDto), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ResponseDto), StatusCodes.Status400BadRequest)]
     [ProducesResponseType(typeof(ResponseDto), StatusCodes.Status404NotFound)]
@@ -66,7 +66,7 @@ public class TasksController : ControllerBase
         return Ok(response);
     }
 
-    [HttpGet("/getallTasks")]
+    [HttpGet("getallTasks")]
     [ProducesResponseType(typeof(IEnumerable<TaskItemDto>), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(IEnumerable<TaskItemDto>), StatusCodes.Status400BadRequest)]
     [ProducesResponseType(typeof(IEnumerable<TaskItemDto>), StatusCodes.Status404NotFound)]
@@ -77,7 +77,7 @@ public class TasksController : ControllerBase
         return Ok(tasks);
     }
 
-    [HttpGet("/getTaskByID/{id}")]
+    [HttpGet("getTaskByID/{id}")]
     [ProducesResponseType(typeof(TaskItemDto), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(TaskItemDto), StatusCodes.Status400BadRequest)]
     [ProducesResponseType(typeof(TaskItemDto), StatusCodes.Status404NotFound)]
@@ -88,7 +88,7 @@ public class TasksController : ControllerBase
         return Ok(task);
     }
 
-    [HttpPut("/setisCompleted")]
+    [HttpPut("setisCompleted")]
     [ProducesResponseType(typeof(ResponseDto), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ResponseDto), StatusCodes.Status400BadRequest)]
     [ProducesResponseType(typeof(ResponseDto), StatusCodes.Status404NotFound)]

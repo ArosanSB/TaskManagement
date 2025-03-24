@@ -1,69 +1,20 @@
-using Domain.Interfaces;
-using Application;
-using Infrastructure.Persistance;
-using Infrastructure.Persistance.Repositories;
-using Microsoft.EntityFrameworkCore;
+
 using Serilog;
-using Presentation.Middleware;
 
-var builder = WebApplication.CreateBuilder(args);
+namespace Presentation;
 
-// Configure Serilog
-Log.Logger = new LoggerConfiguration()
-    .WriteTo.Console()
-    .CreateLogger();
-
-builder.Host.UseSerilog();
-
-// Setting DB 
-builder.Services.AddDbContext<BusinessLogicDbContext>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
-
-// Added interfaces
-builder.Services.AddScoped<ITaskReposistory, TaskReposistory>();
-
-// Adding services
-builder.Services.AddApplicationServices();
-
-// Add services to the container.
-builder.Services.AddControllers();
-
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
-// Angular
-builder.Services.AddCors(options =>
+public static class Program
 {
-    options.AddPolicy("AllowAngularApp",
-        policy =>
-        {
-            policy.WithOrigins("http://localhost:4200") // Allow frontend origin
-                  .AllowAnyMethod()
-                  .AllowAnyHeader()
-                  .AllowCredentials();
-        });
-});
+    public static void Main(string[] args)
+    {
+        CreateHostBuilder(args).Build().Run();
+    }
 
-var app = builder.Build();
-app.UseSerilogRequestLogging();
-
-// Enable CORS
-app.UseCors("AllowAngularApp");
-
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    public static IHostBuilder CreateHostBuilder(string[] args) =>
+        Host.CreateDefaultBuilder(args)
+        .UseSerilog()    
+        .ConfigureWebHostDefaults(webBuilder =>
+            {
+                webBuilder.UseStartup<Startup>();
+            });
 }
-
-app.UseMiddleware<ExceptionMiddleware>();
-
-app.UseHttpsRedirection();
-
-app.UseAuthorization();
-
-app.MapControllers();
-
-app.Run();
