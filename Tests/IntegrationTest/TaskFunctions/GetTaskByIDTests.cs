@@ -37,16 +37,16 @@ public class GetTaskByIDTests : IClassFixture<TestEnvironmnet>
             TaskItemDto request = await CreateTask(mapper, context);
 
             // Act
-            HttpResponseMessage result = await _testEnvironment.HttpClient.GetAsync($"/tasks/getTaskByID/{request.Id}");
+            HttpResponseMessage response = await _testEnvironment.HttpClient.GetAsync($"/tasks/getTaskByID/{request.Id}");
 
             // Assert
-            Assert.NotNull(result);
-            string content = await result.Content.ReadAsStringAsync();
-            TaskItemDto? taskItemDto = JsonSerializer.Deserialize<TaskItemDto>(content, _jsonSerializerOptions);
-            Assert.Equal(request.Title, taskItemDto?.Title);
-            Assert.Equal(request.Description, taskItemDto?.Description);
-            Assert.Equal(request.DueDate, taskItemDto?.DueDate);
-            Assert.Equal(request.IsCompleted, taskItemDto?.IsCompleted);
+            Assert.NotNull(response);
+            string content = await response.Content.ReadAsStringAsync();
+            TaskItemDto? result = JsonSerializer.Deserialize<TaskItemDto>(content, _jsonSerializerOptions);
+            Assert.Equal(request.Title, result?.Title);
+            Assert.Equal(request.Description, result?.Description);
+            Assert.Equal(request.DueDate, result?.DueDate);
+            Assert.Equal(request.IsCompleted, result?.IsCompleted);
         }
     }
 
